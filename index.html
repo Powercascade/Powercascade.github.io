@@ -58,7 +58,7 @@
             text-align: left;
             margin-top: 30px;
             line-height: 1.5;
-            height: 150px;
+            height: 200px;
             overflow: hidden;
             width: 70%;
             margin: 20px auto;
@@ -93,6 +93,14 @@
             animation-delay: 12s;
         }
 
+        .login-line:nth-child(6) {
+            animation-delay: 15s;
+        }
+
+        .login-line:nth-child(7) {
+            animation-delay: 18s;
+        }
+
         /* Typing animation effect */
         @keyframes type {
             0% {
@@ -118,6 +126,12 @@
                 background-color: transparent;
             }
         }
+
+        /* For password masking */
+        .password {
+            color: black;
+            background-color: black;
+        }
     </style>
 </head>
 <body>
@@ -136,8 +150,13 @@
     </div>
 
     <div class="terminal">
-        <div class="login-line">┌──(power㉿Powercascades-Laptop)-[~]</div>
-        <div class="login-line">└─$ </div>
+        <div class="login-line">┌──(power㉿Powercascades-Portfolio)-[~]</div>
+        <div class="login-line">└─$ su - admin</div>
+        <div class="login-line">Password:</div>
+        <div class="login-line">
+            <span class="password">*********</span>
+        </div>
+        <div class="login-line">Access granted</div>
         <div class="cursor"></div>
     </div>
 
