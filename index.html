@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Power's Portfolio</title>
+    <style>
+        body{background-color:black;color:#33cc33;font-family:'Courier New',monospace;margin:0;padding:0;font-size:18px;line-height:1.8;text-align:center;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column}
+        .terminal{background-color:black;color:#33cc33;border:2px solid #33cc33;padding:20px;width:80%;max-width:900px;height:400px;overflow:hidden;border-radius:10px;font-family:'Courier New',monospace;text-align:left;position:relative}
+        .button{background:none;border:none;color:#33cc33;font-size:20px;text-align:left;cursor:pointer;display:block;padding:5px;width:100%;border-radius:5px;margin:10px 0;outline:none}
+        .button:hover{background-color:#33cc33;color:black}
+        .active{background-color:#33cc33;color:black}
+        .hidden{display:none}
+        .cursor{display:inline-block;width:10px;height:20px;background-color:#33cc33;animation:blink 0.8s step-end infinite}
+        @keyframes blink{50%{background-color:transparent}}
+        .ascii-art{font-family:'Courier New',monospace;font-size:16px;color:#33cc33;white-space:pre;margin-top:20px}
+        .tutorial-text{color:#33cc33;font-size:16px;margin-top:20px}
+        .highlight{color:yellow}
+    </style>
+</head>
+<body>
+    <div class="terminal" id="terminal">
+        <div id="ascii-art" class="ascii-art hidden">▄███████▄  ▄██████▄   ▄█     █▄     ▄████████    ▄████████  ▄████████    ▄████████    ▄████████  ▄████████    ▄████████ ████████▄     ▄████████ 
+        ███    ███ ███    ███ ███     ███   ███    ███   ███    ███ ███    ███   ███    ███   ███    ███ ███    ███   ███    ███ ███   ▀███   ███    ███ 
+        ███    ███ ███    ███ ███     ███   ███    █▀    ███    ███ ███    █▀    ███    ███   ███    █▀  ███    █▀    ███    ███ ███    ███   ███    █▀  
+        ███    ███ ███    ███ ███     ███  ▄███▄▄▄      ▄███▄▄▄▄██▀ ███          ███    ███   ███        ███          ███    ███ ███    ███  ▄███▄▄▄     
+        ▀█████████▀  ███    ███ ███     ███ ▀▀███▀▀▀     ▀▀███▀▀▀▀▀   ███        ▀███████████ ▀███████████ ███        ▀███████████ ███    ███ ▀▀███▀▀▀     
+        ███        ███    ███ ███     ███   ███    █▄  ▀███████████ ███    █▄    ███    ███          ███ ███    █▄    ███    ███ ███    ███   ███    █▄  
+        ███        ███    ███ ███ ▄█▄ ███   ███    ███   ███    ███ ███    ███   ███    ███    ▄█    ███ ███    ███   ███    ███ ███   ▄███   ███    ███ 
+        ▄████▀       ▀██████▀   ▀███▀███▀    ██████████   ███    ███ ████████▀    ███    █▀   ▄████████▀  ████████▀    ███    █▀  ████████▀    ██████████ 
+                                                       ███    ███                                                                                      
+        </div>
+        <div id="terminal-output">
+            <div>Welcome to Powercascade's Portfolio</div>
+            <div>┌──(power㉿Powercascade-Portfolio)-[~]</div>
+            <div>└─$ su - admin</div>
+            <div>Password: </div>
+            <div class="cursor"></div>
+        </div>
+    </div>
+    <div id="buttons" class="hidden">
+        <button class="button" id="about">About Me</button>
+        <button class="button" id="github">GitHub</button>
+        <button class="button" id="discord">Discord</button>
+        <button class="button" id="contact">Contact Me</button>
+    </div>
+    <div id="tutorial" class="tutorial-text hidden">To interact, use the <span class="highlight">W</span> and <span class="highlight">S</span> keys or <span class="highlight">Arrow Up/Down</span> to select and Enter to press.</div>
+    <script>
+        let currentButtonIndex=0,buttons=document.querySelectorAll('.button'),terminalOutput=document.getElementById('terminal-output'),tutorialText=document.getElementById('tutorial'),asciiArt=document.getElementById('ascii-art'),cursor=document.querySelector('.cursor');
+        buttons[currentButtonIndex].classList.add('active');
+        document.addEventListener('keydown',function(event){
+            if(event.key==='ArrowDown'||event.key==='s'){buttons[currentButtonIndex].classList.remove('active');currentButtonIndex=(currentButtonIndex+1)%buttons.length;buttons[currentButtonIndex].classList.add('active')}
+            else if(event.key==='ArrowUp'||event.key==='w'){buttons[currentButtonIndex].classList.remove('active');currentButtonIndex=(currentButtonIndex-1+buttons.length)%buttons.length;buttons[currentButtonIndex].classList.add('active')}
+            else if(event.key==='Enter'){buttons[currentButtonIndex].click()}}
+        );
+        function typeText(text,target,callback){
+            let i=0,interval=setInterval(function(){
+                target.innerHTML+=text[i];
+                i++;
+                if(i>=text.length){clearInterval(interval);if(callback)callback()}
+            },50)}
+        function simulateLogin(){
+            terminalOutput.innerHTML='';
+            typeText('┌──(power㉿Powercascade-Portfolio)-[~]',terminalOutput,function(){
+                terminalOutput.innerHTML+='<br>└─$ su - admin';
+                typeText('Password:',terminalOutput,function(){
+                    terminalOutput.innerHTML+='<br>*********';
+                    typeText('Access granted',terminalOutput,function(){
+                        asciiArt.classList.remove('hidden');
+                        tutorialText.classList.remove('hidden');
+                        document.getElementById('buttons').classList.remove('hidden');
+                    })})})}
+        simulateLogin();
+        document.getElementById('about').addEventListener('click',function(){terminalOutput.innerHTML="<div>Hi, I'm Powercascade. I specialize in Python, C#, web development, and more!</div>";tutorialText.classList.add('hidden')});
+        document.getElementById('github').addEventListener('click',function(){terminalOutput.innerHTML="<div>Redirecting to my <a href='https://github.com/Powercascade' target='_blank'>GitHub</a>...</div>";tutorialText.classList.add('hidden')});
+        document.getElementById('discord').addEventListener('click',function(){terminalOutput.innerHTML="<div>Join my Discord community <a href='https://discord.com' target='_blank'>here</a>.</div>";tutorialText.classList.add('hidden')});
+        document.getElementById('contact').addEventListener('click',function(){terminalOutput.innerHTML="<div>Contact me at <a href='mailto:powercascade@example.com'>powercascade@example.com</a>.</div>";tutorialText.classList.add('hidden')});
+    </script>
+</body>
+</html>
