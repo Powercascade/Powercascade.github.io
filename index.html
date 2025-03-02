@@ -132,6 +132,11 @@
             color: black;
             background-color: black;
         }
+
+        /* Hidden for animation purposes */
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -160,7 +165,7 @@
         <div class="cursor"></div>
     </div>
 
-    <div class="content">
+    <div class="content hidden">
         <p>Hi, I'm Powercascade. I'm a developer with skills in Python, C#, web development, and more!</p>
         <p>Feel free to check out my work:</p>
         <ul>
@@ -169,15 +174,34 @@
     </div>
 
     <script>
-        // To trigger the typing animation by adding the lines with a small delay
-        window.onload = () => {
-            let lines = document.querySelectorAll('.login-line');
-            lines.forEach((line, index) => {
-                setTimeout(() => {
-                    line.style.opacity = 1;
-                }, index * 3000); // Add a 3 second delay between each line appearing
-            });
-        };
+        // Function to simulate typing in the terminal
+        function simulateTyping() {
+            const lines = document.querySelectorAll('.login-line');
+            let index = 0;
+
+            function typeLine() {
+                if (index < lines.length) {
+                    lines[index].style.opacity = 1;
+                    index++;
+                    setTimeout(typeLine, 3000); // 3-second delay for each line
+                } else {
+                    // Show main content after typing sequence finishes
+                    document.querySelector('.content').classList.remove('hidden');
+                    redirectToMainSite(); // Trigger redirect after animation
+                }
+            }
+            typeLine();
+        }
+
+        // Redirect to the main portfolio site
+        function redirectToMainSite() {
+            setTimeout(() => {
+                window.location.href = "https://your-portfolio-site.com";  // Replace with your actual site URL
+            }, 2000); // Delay to ensure "Access granted" is shown for a couple of seconds
+        }
+
+        // Run the typing sequence on window load
+        window.onload = simulateTyping;
     </script>
 </body>
 </html>
