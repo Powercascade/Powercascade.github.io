@@ -48,21 +48,97 @@
             padding: 5px;
             border-radius: 5px;
         }
+
+        /* Terminal animation styles */
+        .terminal {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: green;
+            white-space: pre;
+            text-align: left;
+            margin-top: 30px;
+            line-height: 1.5;
+            height: 150px;
+            overflow: hidden;
+            width: 70%;
+            margin: 20px auto;
+            border: 2px solid #33cc33;
+            padding: 10px;
+            background-color: black;
+        }
+
+        .login-line {
+            display: inline-block;
+            opacity: 0;
+            animation: type 3s steps(30) forwards;
+        }
+
+        .login-line:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .login-line:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .login-line:nth-child(3) {
+            animation-delay: 6s;
+        }
+
+        .login-line:nth-child(4) {
+            animation-delay: 9s;
+        }
+
+        .login-line:nth-child(5) {
+            animation-delay: 12s;
+        }
+
+        /* Typing animation effect */
+        @keyframes type {
+            0% {
+                width: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #33cc33;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                background-color: transparent;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">Welcome to Powercascade's Portfolio</div>
     
     <div class="ascii-art">
-   ▄███████▄  ▄██████▄   ▄█     █▄     ▄████████    ▄████████  ▄████████    ▄████████    ▄████████  ▄████████    ▄████████ ████████▄     ▄████████ 
-  ███    ███ ███    ███ ███     ███   ███    ███   ███    ███ ███    ███   ███    ███   ███    ███ ███    ███   ███    ███ ███   ▀███   ███    ███ 
-  ███    ███ ███    ███ ███     ███   ███    █▀    ███    ███ ███    █▀    ███    ███   ███    █▀  ███    █▀    ███    ███ ███    ███   ███    █▀  
-  ███    ███ ███    ███ ███     ███  ▄███▄▄▄      ▄███▄▄▄▄██▀ ███          ███    ███   ███        ███          ███    ███ ███    ███  ▄███▄▄▄     
-▀█████████▀  ███    ███ ███     ███ ▀▀███▀▀▀     ▀▀███▀▀▀▀▀   ███        ▀███████████ ▀███████████ ███        ▀███████████ ███    ███ ▀▀███▀▀▀     
-  ███        ███    ███ ███     ███   ███    █▄  ▀███████████ ███    █▄    ███    ███          ███ ███    █▄    ███    ███ ███    ███   ███    █▄  
-  ███        ███    ███ ███ ▄█▄ ███   ███    ███   ███    ███ ███    ███   ███    ███    ▄█    ███ ███    ███   ███    ███ ███   ▄███   ███    ███ 
- ▄████▀       ▀██████▀   ▀███▀███▀    ██████████   ███    ███ ████████▀    ███    █▀   ▄████████▀  ████████▀    ███    █▀  ████████▀    ██████████ 
-                                                   ███    ███                                                                                      
+        ▄███████▄  ▄██████▄   ▄█     █▄     ▄████████    ▄████████  ▄████████    ▄████████    ▄████████  ▄████████    ▄████████ ████████▄     ▄████████ 
+        ███    ███ ███    ███ ███     ███   ███    ███   ███    ███ ███    ███   ███    ███   ███    ███ ███    ███   ███    ███ ███   ▀███   ███    ███ 
+        ███    ███ ███    ███ ███     ███   ███    █▀    ███    ███ ███    █▀    ███    ███   ███    █▀  ███    █▀    ███    ███ ███    ███   ███    █▀  
+        ███    ███ ███    ███ ███     ███  ▄███▄▄▄      ▄███▄▄▄▄██▀ ███          ███    ███   ███        ███          ███    ███ ███    ███  ▄███▄▄▄     
+        ▀█████████▀  ███    ███ ███     ███ ▀▀███▀▀▀     ▀▀███▀▀▀▀▀   ███        ▀███████████ ▀███████████ ███        ▀███████████ ███    ███ ▀▀███▀▀▀     
+        ███        ███    ███ ███     ███   ███    █▄  ▀███████████ ███    █▄    ███    ███          ███ ███    █▄    ███    ███ ███    ███   ███    █▄  
+        ███        ███    ███ ███ ▄█▄ ███   ███    ███   ███    ███ ███    ███   ███    ███    ▄█    ███ ███    ███   ███    ███ ███   ▄███   ███    ███ 
+        ▄████▀       ▀██████▀   ▀███▀███▀    ██████████   ███    ███ ████████▀    ███    █▀   ▄████████▀  ████████▀    ███    █▀  ████████▀    ██████████ 
+                                                       ███    ███                                                                                      
+    </div>
+
+    <div class="terminal">
+        <div class="login-line">┌──(power㉿Powercascades-Laptop)-[~]</div>
+        <div class="login-line">└─$ </div>
+        <div class="cursor"></div>
     </div>
 
     <div class="content">
@@ -72,5 +148,17 @@
             <li><a href="https://github.com/Powercascade" target="_blank">GitHub</a></li>
         </ul>
     </div>
+
+    <script>
+        // To trigger the typing animation by adding the lines with a small delay
+        window.onload = () => {
+            let lines = document.querySelectorAll('.login-line');
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.opacity = 1;
+                }, index * 3000); // Add a 3 second delay between each line appearing
+            });
+        };
+    </script>
 </body>
 </html>
